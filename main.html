@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pan African AI Summit 2025 (PAAIS)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #1a1a2e;
+            --primary-blue: #16213e;
+            --accent-purple: #8b5cf6;
+            --accent-magenta: #d946ef;
+            --accent-cyan: #06b6d4;
+            --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #d946ef 50%, #06b6d4 100%);
+            --gradient-dark: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            --text-white: #ffffff;
+            --text-gray: #94a3b8;
+            --bg-light: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-white);
+            background: var(--primary-dark);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 46, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .navbar.scrolled {
+            background: rgba(26, 26, 46, 0.98);
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .register-btn {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .register-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient-dark);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(217, 70, 239, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-purple);
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: var(--text-gray);
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-gray);
+        }
+
+        .meta-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(139, 92, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: var(--accent-purple);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-stats {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 25px;
+            padding: 3rem;
+            text-align: center;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        /* Featured Speakers Section */
+        .speakers-section {
+            padding: 6rem 0;
+            background: var(--primary-blue);
+            position: relative;
+        }
+
+        .speakers-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 70% 30%, rgba(139, 92, 246, 0.05) 0%, transparent 70%);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-purple);
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .speaker-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 25px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speaker-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-primary);
+        }
+
+        .speaker-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .speaker-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            font-weight: 800;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .speaker-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-white);
+        }
+
+        .speaker-title {
+            color: var(--accent-purple);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .speaker-company {
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .speaker-bio {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-gray);
+        }
+
+        /* Platform Features */
+        .features-section {
+            padding: 6rem 0;
+            background: var(--primary-dark);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-white);
+        }
+
+        .feature-description {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* Event Details */
+        .event-details {
+            padding: 6rem 0;
+            background: var(--gradient-dark);
+        }
+
+        .details-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .details-text h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .details-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .event-info {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 25px;
+            padding: 3rem;
+        }
+
+        .info-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .info-content h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: var(--text-white);
+        }
+
+        .info-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        /* Sponsors Section */
+        .sponsors-section {
+            padding: 6rem 0;
+            background: var(--primary-blue);
+        }
+
+        .sponsors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .sponsor-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .sponsor-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--text-gray);
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-purple);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+            color: var(--text-gray);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-content, .details-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .speakers-grid, .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-meta {
+                justify-content: center;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">PAN AFRICAN AI SUMMIT</a>
+            <ul class="nav-links">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#speakers">SPEAKERS</a></li>
+                <li><a href="#programme">PROGRAMME</a></li>
+                <li><a href="#partners">PARTNERS</a></li>
+                <li><a href="#about">ABOUT US</a></li>
+            </ul>
+            <a href="#register" class="register-btn">Register Now</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">🚀 PAAIS 2025</div>
+                <h1 class="hero-title">1ST PAN AFRICAN AI SUMMIT 2025</h1>
+                <p class="hero-subtitle">HARNESSING AI TO ENHANCE PRODUCTIVITY AND SKILLS TO DRIVE GROWTH ACROSS AFRICA</p>
+                
+                <div class="hero-meta">
+                    <div class="meta-item">
+                        <div class="meta-icon">📅</div>
+                        <span>23 - 24 September 2025</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsors Section -->
+    <section class="sponsors-section" id="partners">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">🤝 PARTNERS & SPONSORS</div>
+                <h2 class="section-title">2025 SPONSORS & PARTNERS</h2>
+                <p class="section-subtitle">Proud to partner with leading organizations driving AI innovation across Africa</p>
+            </div>
+
+            <div class="sponsors-grid">
+                <div class="sponsor-card fade-in">
+                    <h3 style="color: #4a5568; font-weight: 700;">Sentinel</h3>
+                    <p style="color: var(--text-gray); font-size: 0.9rem;">Asset Management</p>
+                </div>
+
+                <div class="sponsor-card fade-in">
+                    <h3 style="color: #2563eb; font-weight: 700;">HRplus</h3>
+                    <p style="color: var(--text-gray); font-size: 0.9rem;">Software Solutions</p>
+                </div>
+
+                <div class="sponsor-card fade-in">
+                    <h3 style="color: #f59e0b; font-weight: 700;">⭐ RECRUIT</h3>
+                    <p style="color: var(--text-gray); font-size: 0.9rem;">Caribbean - Best Quality Talent</p>
+                </div>
+
+                <div class="sponsor-card fade-in">
+                    <h3 style="color: #1f2937; font-weight: 700;">GHANA FINTECH</h3>
+                    <p style="color: var(--text-gray); font-size: 0.9rem;">& Payments Association</p>
+                </div>
+
+                <div class="sponsor-card fade-in">
+                    <h3 style="color: #059669; font-weight: 700;">REGNAN</h3>
+                    <p style="color: var(--text-gray); font-size: 0.9rem;">Properties & Investment</p>
+                </div>
+
+                <div class="sponsor-card fade-in">
+                    <h3 style="background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700;">Ministry of Communication</h3>
+                    <p style="color: var(--text-gray); font-size: 0.9rem;">Digital Technology & Innovation - Ghana</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section" style="padding: 6rem 0; background: var(--gradient-dark); text-align: center;">
+        <div class="container">
+            <div class="fade-in">
+                <h2 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 1.5rem; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Ready to Shape Africa's AI Future?</h2>
+                <p style="font-size: 1.2rem; color: var(--text-gray); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">Join hundreds of AI leaders, innovators, and visionaries at the inaugural Pan African AI Summit.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="#register" class="btn-primary" style="font-size: 1.1rem; padding: 1.2rem 3rem;">Secure Your Spot →</a>
+                    <a href="#programme" class="btn-secondary" style="font-size: 1.1rem; padding: 1.2rem 3rem;">View Programme</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Contact Information</h3>
+                    <p>Email: info@paais.org</p>
+                    <p>Phone: +233 XX XXX XXXX</p>
+                    <p>Address: Accra, Ghana</p>
+                    <p style="margin-top: 1rem;">
+                        <a href="#" style="margin-right: 1rem;">LinkedIn</a>
+                        <a href="#" style="margin-right: 1rem;">Twitter</a>
+                        <a href="#">Facebook</a>
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#speakers">Speakers</a></p>
+                    <p><a href="#programme">Programme</a></p>
+                    <p><a href="#partners">Partners</a></p>
+                    <p><a href="#about">About Us</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Event Information</h3>
+                    <p>September 23-24, 2025</p>
+                    <p>Palms by Eagles Airport City</p>
+                    <p>Accra, Ghana</p>
+                    <p><a href="#register">Register Now</a></p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Organized By</h3>
+                    <p style="font-weight: 600; background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Alphavecta Technologies</p>
+                    <p style="margin-top: 1rem;">In Partnership With</p>
+                    <p>Ministry of Communication, Digital Technology & Innovation - Ghana</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Pan African AI Summit (PAAIS). All rights reserved. | Organized by Alphavecta Technologies</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add some dynamic interactions
+        document.querySelectorAll('.speaker-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-15px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Stats counter animation
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach(stat => {
+                const target = parseInt(stat.textContent);
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target + (stat.textContent.includes('+') ? '+' : '');
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current) + (stat.textContent.includes('+') ? '+' : '');
+                    }
+                }, 40);
+            });
+        }
+
+        // Trigger stats animation when hero section is visible
+        const heroObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    heroObserver.disconnect();
+                }
+            });
+        });
+
+        heroObserver.observe(document.querySelector('.hero-stats'));
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
+                    <div class="meta-item">
+                        <div class="meta-icon">📍</div>
+                        <span>Palms by Eagles Airport City, Ghana</span>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="#register" class="btn-primary">Register Now →</a>
+                    <a href="#speakers" class="btn-secondary">View Speakers</a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-stats">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Attendees</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">10+</span>
+                            <span class="stat-label">Industries</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">30+</span>
+                            <span class="stat-label">Countries</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">10+</span>
+                            <span class="stat-label">AI Startups</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Speakers -->
+    <section class="speakers-section" id="speakers">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">🎯 FEATURED SPEAKERS</div>
+                <h2 class="section-title">PAAIS FEATURED SPEAKERS</h2>
+                <p class="section-subtitle">Meet the visionary leaders, innovators, and AI experts who are shaping Africa's technological future</p>
+            </div>
+
+            <div class="speakers-grid">
+                <div class="speaker-card fade-in">
+                    <div class="speaker-avatar">KO</div>
+                    <h3 class="speaker-name">KWAME A. OPPONG</h3>
+                    <p class="speaker-title">Head of FinTech and Innovation</p>
+                    <p class="speaker-company">Bank of Ghana</p>
+                    <p class="speaker-bio">Leading Ghana's financial technology transformation and digital innovation initiatives across the banking sector.</p>
+                </div>
+
+                <div class="speaker-card fade-in">
+                    <div class="speaker-avatar">IO</div>
+                    <h3 class="speaker-name">IVY APEA OWUSU</h3>
+                    <p class="speaker-title">CEO</p>
+                    <p class="speaker-company">Cirrus Oil Services LTD, Ghana</p>
+                    <p class="speaker-bio">Pioneering sustainable energy solutions and driving AI adoption in the oil and gas industry across West Africa.</p>
+                </div>
+
+                <div class="speaker-card fade-in">
+                    <div class="speaker-avatar">DA</div>
+                    <h3 ="speaker-name">DARLINGTON AKOGO</h3>
+                    <p class="speaker-title">Founder & CEO</p>
+                    <p class="speaker-company">minoHealth AI Labs, KaraAgro AI, Runmila AI Institute</p>
+                    <p class="speaker-bio">AI researcher and entrepreneur focusing on healthcare, agriculture, and natural language processing for African languages.</p>
+                </div>
+
+                <div class="speaker-card fade-in">
+                    <div class="speaker-avatar">AS</div>
+                    <h3 class="speaker-name">Dr. Amina Salum</h3>
+                    <p class="speaker-title">Director of AI Research</p>
+                    <p class="speaker-company">African Institute of Technology</p>
+                    <p class="speaker-bio">Leading research in machine learning applications for sustainable development and smart city initiatives.</p>
+                </div>
+
+                <div class="speaker-card fade-in">
+                    <div class="speaker-avatar">JM</div>
+                    <h3 class="speaker-name">Prof. James Mwangi</h3>
+                    <p class="speaker-title">Head of AI Ethics</p>
+                    <p class="speaker-company">UN Economic Commission for Africa</p>
+                    <p class="speaker-bio">Expert in responsible AI development and governance frameworks for emerging economies across the continent.</p>
+                </div>
+
+                <div class="speaker-card fade-in">
+                    <div class="speaker-avatar">FO</div>
+                    <h3 class="speaker-name">Fatima Okoye</h3>
+                    <p class="speaker-title">Chief Technology Officer</p>
+                    <p class="speaker-company">TechAfrica Ventures</p>
+                    <p class="speaker-bio">Technology leader driving AI startup ecosystem development and venture capital investments across Africa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Features -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">🌟 PLATFORM FEATURES</div>
+                <h2 class="section-title">We are creating a vibrant platform that;</h2>
+                <p class="section-subtitle">Discover the key pillars that make PAAIS the premier AI summit for Africa</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">💡</div>
+                    <h3 class="feature-title">Showcases Solutions</h3>
+                    <p class="feature-description">Demonstrates cutting-edge AI solutions tailored for African challenges in healthcare, agriculture, fintech, and education.</p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🚀</div>
+                    <h3 class="feature-title">Drives AI Adoption</h3>
+                    <p class="feature-description">Showcases how AI can be leveraged by small, medium, and large businesses to enhance productivity and competitiveness.</p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">📈</div>
+                    <h3 class="feature-title">Promotes Inclusive Growth</h3>
+                    <p class="feature-description">Ensures AI development benefits all segments of society, with focus on ethical implementation and sustainable practices.</p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🤝</div>
+                    <h3 class="feature-title">Builds Partnerships</h3>
+                    <p class="feature-description">Creates opportunities for collaboration between startups, corporations, governments, and academic institutions.</p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🎓</div>
+                    <h3 class="feature-title">Develops Skills</h3>
+                    <p class="feature-description">Provides training and capacity building programs to develop Africa's AI talent pipeline and technical expertise.</p>
+                </div>
+
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">🌍</div>
+                    <h3 class="feature-title">Connects Africa</h3>
+                    <p class="feature-description">Brings together AI innovators from across the continent to share knowledge, experiences, and best practices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details -->
+    <section class="event-details">
+        <div class="container">
+            <div class="details-content">
+                <div class="details-text fade-in">
+                    <h2>Connect with global industry leaders</h2>
+                    <p>Build safe "glocal" AI ecosystem and take your business to the next level. The inaugural Pan African AI Summit in Ghana organized by Alphavecta Technologies aims to be a pioneering event bringing together leaders, innovators, academia, users and enthusiasts.</p>
+                    <p>Join us for two intensive days of keynote presentations, panel discussions, technical workshops, and unparalleled networking opportunities.</p>
+                </div>
+
+                <div class="event-info fade-in">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-icon">📅</div>
+                            <div class="info-content">
+                                <h3>Date & Time</h3>
+                                <p>September 23-24, 2025 | 9:00 AM - 5:00 PM</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">📍</div>
+                            <div class="info-content">
+                                <h3>Location</h3>
+                                <p>Palms by Eagles Airport City, Accra, Ghana</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">🎟️</div>
+                            <div class="info-content">
+                                <h3>Tickets</h3>
+                                <p>Early Bird, Standard, Group Discounts Available</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">📞</div>
+                            <div class="info-content">
+                                <h3>Contact Us</h3>
+                                <p>Email: 
